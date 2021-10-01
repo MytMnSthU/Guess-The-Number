@@ -1,6 +1,8 @@
 window.addEventListener("load", () => {
 	const randomNumber = Math.floor(Math.random() * 100),
-		submitNum = document.querySelector(".btn-guess");
+		guessBtn = document.querySelector(".btn-guess"),
+		tryagainBtn = document.querySelector(".btn-try-again");
+
 	var counter = 0,
 		inputTxt = document.querySelector(".input-text");
 	inputTxt.value = "";
@@ -76,6 +78,7 @@ window.addEventListener("load", () => {
 						iterations: 1,
 					}
 				);
+				tryagainBtn.style.display = "block";
 			}
 		} else {
 			answer.textContent = "You should enter a number between 10 and 100";
@@ -83,11 +86,15 @@ window.addEventListener("load", () => {
 		}
 	};
 
-	submitNum.addEventListener("click", guessNumber);
+	guessBtn.addEventListener("click", guessNumber);
+	tryagainBtn.addEventListener('click', () => {
+		location.reload();	
+	});
 	window.addEventListener("keydown", (e) => {
 		if (e.key == "Enter") {
 			guessNumber();
 		}
 	});
-	console.log(randomNumber);
+	// console.log(randomNumber);
+
 });
